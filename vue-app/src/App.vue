@@ -7,7 +7,9 @@
             <v-img :src="selectedRecpient.avatar"></v-img>
           </v-avatar>
         </v-list-item>
-        <v-list-item-title>Recpient: {{ selectedRecpient.title }}</v-list-item-title>
+        <v-list-item-title
+          >Recpient: {{ selectedRecpient.title }}</v-list-item-title
+        >
         <v-list-item-content>
           {{ selectedRecpient.description }}
         </v-list-item-content>
@@ -32,12 +34,12 @@
 
     <v-navigation-drawer v-model="left" fixed temporary></v-navigation-drawer>
 
-    <v-content>
+    <v-main>
       <router-view @selectRecipient="onSelectRecipientChild"></router-view>
       <v-btn color="pink" dark large absolute bottom right fab>
         <v-icon>mdi-check</v-icon>
       </v-btn>
-    </v-content>
+    </v-main>
 
     <v-navigation-drawer
       v-model="right"
