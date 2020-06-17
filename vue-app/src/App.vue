@@ -1,19 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawerRight" app clipped right>
-      <v-list dense>
-        <v-list-item>
-          <v-avatar size="100">
-            <v-img :src="selectedRecpient.avatar"></v-img>
-          </v-avatar>
-        </v-list-item>
-        <v-list-item-title
-          >Recpient: {{ selectedRecpient.title }}</v-list-item-title
-        >
-        <v-list-item-content>
-          {{ selectedRecpient.description }}
-        </v-list-item-content>
-      </v-list>
+      <ProfileCard :address="selectedRecpient.address" />
     </v-navigation-drawer>
 
     <v-navigation-drawer v-model="drawer" app>
@@ -58,10 +46,12 @@
 
 <script>
 import RoundList from "./components/RoundList";
+import ProfileCard from "./components/ProfileCard";
 
 export default {
   components: {
     RoundList,
+    ProfileCard,
   },
   props: {
     source: String,
@@ -76,12 +66,12 @@ export default {
   }),
   methods: {
     onSelectRecipientChild(recipient) {
-      console.log("on recipient", recipient);
+      // console.log("on recipient", recipient);
       this.selectedRecpient = recipient;
     },
   },
   created() {
     this.$vuetify.theme.dark = true;
-  }
+  },
 };
 </script>

@@ -6,13 +6,12 @@
       :key="item.title"
       @click="selectRound(item)"
     >
-    {{item.title}}
+      {{ item.title }}
     </v-list-item>
   </v-list>
 </template>
 
 <script>
-
 export default {
   data: () => ({
     items: [

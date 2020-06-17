@@ -1,15 +1,7 @@
 <template>
   <v-container>
     <v-row v-if="user">
-      <v-col cols="1">
-        <v-avatar size="40">
-          <v-img src="https://cdn.vuetifyjs.com/images/lists/5.jpg"></v-img>
-        </v-avatar>
-      </v-col>
-      <v-col cols="2">
-        some text <br />
-        some other text
-      </v-col>
+      <ProfileCard :address="user" />
       <v-col cols="7">
         <span>100 DAI</span>
         <v-progress-linear
@@ -27,9 +19,9 @@
         <v-btn text color="pink accent-4">Fund</v-btn>
       </v-col>
     </v-row>
-    <v-row >
-      <v-col cols="12" class="text-center" >
-      <Web3Signin v-if="!user" :signIn="signIn" />
+    <v-row>
+      <v-col cols="12" class="text-center">
+        <Web3Signin v-if="!user" :signIn="signIn" />
       </v-col>
     </v-row>
     <v-list subheader>
@@ -51,8 +43,10 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Signin from "../components/Web3Signin";
 import RecipientItem from "../components/RecipientItem";
+import ProfileCard from "../components/ProfileCard";
 
 export default {
+  components: { RecipientItem, Web3Signin, ProfileCard },
   data: () => ({
     user: null,
     web3: null,
@@ -62,40 +56,26 @@ export default {
     items: [
       {
         active: true,
-        title: "Jason Oner",
-        address: "0x1234....56789",
-        avatar: "https://i.imgur.com/hnhW457.png",
-        description:
-          "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.",
+        address: "0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9",
       },
       {
         active: true,
-        title: "Ranee Carlson",
-        address: "0x1234....56789",
-        avatar: "https://i.imgur.com/iwg5Aic.png",
-        description:
-          "Lorem Ipsum proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.",
+        address: "0x710e2f9d630516d3afdd053de584f1fa421e84bc",
       },
       {
-        title: "Cindy Baker",
-        address: "0x1234....56789",
-        avatar: "https://i.imgur.com/U7IAdQa.png",
-        description:
-          "Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Lorem Ipsum proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.",
+        address: "0x81aaa9a7a8358cc2971b9b8de72acce6d7862bc8",
       },
       {
-        title: "Ali Connors",
-        address: "0x1234....56789",
-        avatar: "https://i.imgur.com/R4TZsxC.png",
-        description:
-          "Ipsum proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.",
+        address: "0xd714dd60e22bbb1cbafd0e40de5cfa7bbdd3f3c8",
+      },
+      {
+        address: "0x4fafa767c9cb71394875c139d43aee7799748908",
       },
     ],
   }),
-  components: { RecipientItem, Web3Signin },
   methods: {
     selectRecipient(recipient) {
-      console.log("recipient", recipient);
+      // console.log("recipient", recipient);
       this.$emit("selectRecipient", recipient);
     },
     async signIn() {
@@ -116,11 +96,10 @@ export default {
         const provider = await web3Modal.connect();
 
         this.web3 = new Web3(provider);
-        // TODO: check valid chain id
         const [account] = await this.web3.eth.getAccounts();
         this.user = account;
       } catch (err) {
-        console.log("web3Modal error", err);
+        // console.log("web3Modal error", err);
       }
     },
   },

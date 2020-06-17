@@ -4,7 +4,7 @@
 <script>
 export default {
   props: {
-    signIn: Function
-  }
+    signIn: Function,
+  },
 };
 </script>
