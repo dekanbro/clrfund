@@ -80,5 +80,8 @@ export default {
       this.selectedRecpient = recipient;
     },
   },
+  created() {
+    this.$vuetify.theme.dark = true;
+  }
 };
 </script>

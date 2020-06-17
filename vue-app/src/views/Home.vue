@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row v-if="user">
       <v-col cols="1">
         <v-avatar size="40">
           <v-img src="https://cdn.vuetifyjs.com/images/lists/5.jpg"></v-img>
@@ -24,8 +24,12 @@
         </v-progress-linear>
       </v-col>
       <v-col>
-        <v-btn v-if="user" text color="pink accent-4">Fund</v-btn>
-        <Web3Signin v-if="!user" :signIn="signIn" />
+        <v-btn text color="pink accent-4">Fund</v-btn>
+      </v-col>
+    </v-row>
+    <v-row >
+      <v-col cols="12" class="text-center" >
+      <Web3Signin v-if="!user" :signIn="signIn" />
       </v-col>
     </v-row>
     <v-list subheader>
